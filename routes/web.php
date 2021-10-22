@@ -18,14 +18,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('/tarefa', '\App\Http\Controllers\TarefaController');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
+->name('home')
+->middleware('verified');
+
+Route::resource('/tarefa', '\App\Http\Controllers\TarefaController')->middleware('verified');
 
 route::get('/mensagem-teste', function(){
-    // return new MensagemTesteMail();
-// });
+    /*/
+    return new MensagemTesteMail();
+});
+*/
+
     Mail::to('andrelassalvia@gmail.com')->send(new MensagemTesteMail());
     return 'Email enviado com sucesso';
 });
