@@ -17,7 +17,7 @@
                         <a href="{{url()->previous()}}" class="btn btn-primary">Voltar</a>
                 </div>
             </div>
-            {{$request}}
+            
         </div>
     </div>
 </div>

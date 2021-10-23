@@ -20,9 +20,15 @@ class TarefaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
         //
+        $user_id = auth()->user()->id;
+        // dd($user_id);
+        $tarefas = Tarefa::where('user_id', $user_id)->get();
+        return view ('tarefa.index', ['tarefas' => $tarefas]);
+    }
+
+        /*
         if(Auth::check()){
             $id = Auth::user()->id;
             $name = Auth::user()->name;
@@ -31,7 +37,7 @@ class TarefaController extends Controller
         } else{
             return 'Usuário não logado no sistema';
         }
-
+        */
         /*
         if(auth()->check()){
             $id = auth()->user()->id;
@@ -42,7 +48,7 @@ class TarefaController extends Controller
             return 'Usuário não logado no sistema';
         }
         */
-    }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -66,7 +72,11 @@ class TarefaController extends Controller
     {
         //
         // dd($request->all());
-        $tarefa = Tarefa::create($request->all());
+        $dados = $request->all();
+        $dados['user_id'] = auth()->user()->id;
+        // dd($dados);
+
+        $tarefa = Tarefa::create($dados);
         $destinatario = auth()->user()->email; // email do usuario logado
         Mail::to($destinatario)->send(new NovaTarefaMail($tarefa));
         return redirect()->route('tarefa.show', ['tarefa' => $tarefa->id]);
