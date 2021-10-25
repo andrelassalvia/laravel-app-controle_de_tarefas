@@ -5,7 +5,16 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Tarefa <a href="{{route('tarefa.create')}}" class="float-right">Novo</a></div>
+                <div class="card-header">Tarefa 
+                    <ul class="nav float-right">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{route('tarefa.create')}}">Novo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('tarefa.exportacao')}}">XLSX</a>
+                        </li>
+                    </ul>
+                </div>
                 
                 <div class="card-body">
                     <table class="table">

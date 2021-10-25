@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Mail;
 use App\Mail\NovaTarefaMail;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\TarefasExport;
 
 class TarefaController extends Controller
 {   
@@ -153,5 +155,10 @@ class TarefaController extends Controller
             return view('tarefa.show', ['tarefa' => $tarefa]);
         }
 
+    }
+
+    public function exportacao(){
+
+        return Excel::download(new TarefasExport, 'lista_de_tarefas.xlsx');
     }
 }
