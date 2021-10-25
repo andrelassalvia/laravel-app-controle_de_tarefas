@@ -11,7 +11,13 @@
                             <a class="nav-link active" aria-current="page" href="{{route('tarefa.create')}}">Novo</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('tarefa.exportacao')}}">XLSX</a>
+                            <a class="nav-link" href="{{route('tarefa.exportacao', ['extensao' => 'xlsx'])}}">XLSX</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('tarefa.exportacao', ['extensao' => 'csv'])}}">CSV</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('tarefa.exportacao', ['extensao' => 'pdf'])}}">PDF</a>
                         </li>
                     </ul>
                 </div>

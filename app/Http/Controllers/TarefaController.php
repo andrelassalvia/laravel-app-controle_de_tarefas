@@ -157,8 +157,16 @@ class TarefaController extends Controller
 
     }
 
-    public function exportacao(){
+    public function exportacao($extensao){
 
-        return Excel::download(new TarefasExport, 'lista_de_tarefas.xlsx');
+        // return Excel::download(new TarefasExport, 'lista_de_tarefas.xlsx');
+
+        if(in_array($extensao, ['xlsx', 'pdf', 'csv'])){
+
+            return Excel::download(new TarefasExport, 'lista_de_tarefas.'.$extensao);
+
+        }else{
+            return redirect()->route('tarefa.index');
+        }
     }
 }
