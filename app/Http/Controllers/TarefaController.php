@@ -9,6 +9,8 @@ use Mail;
 use App\Mail\NovaTarefaMail;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\TarefasExport;
+use PDF;
+
 
 class TarefaController extends Controller
 {   
@@ -168,5 +170,14 @@ class TarefaController extends Controller
         }else{
             return redirect()->route('tarefa.index');
         }
+    }
+
+    public function exportar(){
+        $tarefas = auth()->user()->tarefas()->get();
+        $pdf = PDF::loadView('tarefa.pdf', ['tarefas' => $tarefas]);
+        $pdf->setPaper('a4', 'landscape');
+        // return $pdf->download('lista_de_tarefas.pdf');
+        return $pdf->stream('lista_de_tarefas.pdf');
+    
     }
 }

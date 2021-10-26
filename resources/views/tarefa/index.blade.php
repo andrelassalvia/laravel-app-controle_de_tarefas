@@ -19,6 +19,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('tarefa.exportacao', ['extensao' => 'pdf'])}}">PDF</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('tarefa.exportar')}}" target="_blank">PDF_DOM</a>
+                        </li>
                     </ul>
                 </div>
                 
